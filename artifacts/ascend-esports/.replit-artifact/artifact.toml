@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "ASCEND Esports"
+description = "A public Standoff 2 esports team website for ASCEND, featuring the roster, match history, tournaments, statistics, and a private owner-only management area."
+version = "1.0.0"
+id = "artifacts/ascend-esports"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 24611
+
+[services.development]
+run = "pnpm --filter @workspace/ascend-esports run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/ascend-esports", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/ascend-esports/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "24611"
+BASE_PATH = "/"
