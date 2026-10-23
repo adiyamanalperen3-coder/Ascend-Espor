@@ -103,7 +103,8 @@ button { cursor: pointer; }
 .roster { display: grid; grid-template-columns: repeat(4,1fr); gap: 14px; }
 .player-card { padding: 14px; cursor: pointer; transition: transform .2s,border-color .2s; }
 .player-card:hover { transform: translateY(-4px); border-color: var(--teal-deep); }
-.avatar { min-height: 145px; display: grid; place-items: center; background: linear-gradient(145deg,#17383a,#0b1517); border: 1px solid #214244; border-radius: 8px; color: var(--teal); font: 900 60px 'Barlow Condensed',sans-serif; margin-bottom: 13px; }
+.avatar { height: 145px; display: grid; place-items: center; overflow: hidden; background: linear-gradient(145deg,#17383a,#0b1517); border: 1px solid #214244; border-radius: 8px; margin-bottom: 13px; }
+.avatar img { display: block; width: 100%; height: 100%; object-fit: contain; }
 .player-card h3, .tourney h3 { margin: 0; font: 700 24px 'Barlow Condensed',sans-serif; }
 .role, .muted { color: var(--sub); font-size: 12px; }
 .player-foot, .tourney-foot { display: flex; justify-content: space-between; align-items: center; gap: 8px; border-top: 1px solid var(--line); margin-top: 14px; padding-top: 12px; }
@@ -170,7 +171,7 @@ footer { border-top: 1px solid var(--line); padding: 25px 0; margin-top: 48px; c
 }
 @media(max-width:480px) {
   .wrap { width: calc(100% - 28px); }.hero { padding-top: 42px; }.hero h1 { font-size: 59px; }
-  .roster { gap: 8px; }.player-card { padding: 9px; }.avatar { min-height: 100px; font-size: 43px; }
+  .roster { gap: 8px; }.player-card { padding: 9px; }.avatar { height: 100px; }
   .match { padding: 11px 9px; gap: 6px; }.team { font-size: 11px; gap: 6px; }.mini-crest { width: 25px; height: 25px; }.score { font-size: 20px; }
   .section { padding-top: 36px; }.admin-main { padding: 14px; }.admin-row { align-items: flex-start; }.row-actions { flex-direction: column; }
   .form-grid { grid-template-columns: 1fr; }.field.full { grid-column: auto; }

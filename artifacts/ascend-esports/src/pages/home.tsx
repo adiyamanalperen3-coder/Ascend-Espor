@@ -64,7 +64,16 @@ export default function Home() {
           <div className="section-head"><div><h2>Aktif Kadro</h2><p>ASCEND formasını taşıyan oyuncular</p></div><span className="tag">ROSTER</span></div>
           {content.isLoading ? <LoadingCards /> : content.isError ? <div className="error-box" data-testid="error-roster">Kadro yüklenemedi. <button className="btn btn-secondary" onClick={() => content.refetch()} data-testid="button-retry-roster">Tekrar dene</button></div> :
             players.length ? <div className="roster">{players.map(player => <article className="card player-card" key={player.id} data-testid={`card-player-${player.id}`}>
-              <div className="avatar" data-testid={`text-player-initials-${player.id}`}>{player.initials || player.name.slice(0, 2)}</div>
+              <div className="avatar" data-testid={`image-player-logo-${player.id}`}>
+                <img
+                  src={`${import.meta.env.BASE_URL}ascend-logo.jpeg`}
+                  alt="ASCEND Esports takım logosu"
+                  width={1024}
+                  height={1024}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
               <h3 data-testid={`text-player-name-${player.id}`}>{player.name}</h3><div className="role" data-testid={`text-player-role-${player.id}`}>{player.role}</div>
               <div className="player-foot"><span className="role">{player.matches} maç · {player.wins} galibiyet</span><span className="tag">OYUNCU</span></div>
               {player.note && <p className="note" data-testid={`text-player-note-${player.id}`}>{player.note}</p>}

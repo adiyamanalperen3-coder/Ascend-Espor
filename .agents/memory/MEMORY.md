@@ -1,1 +1,2 @@
 - [OpenAPI client codegen](openapi-client-codegen.md) — keep Orval’s React Query target and TypeScript iterable libraries aligned with generated API code.
+- [Roster imagery](roster-imagery.md) — use the supplied team logo in roster cards until the user provides player portraits.
