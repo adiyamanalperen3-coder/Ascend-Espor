@@ -1,21 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1" />
-    <title>ASCEND Esports</title>
-    <meta name="description" content="ASCEND Esports — built on Replit. Update this description to reflect the app." />
+    <title>ASCEND Esports — Standoff 2 Takım, Maç ve Turnuvalar</title>
+    <meta name="description" content="ASCEND Esports'in Standoff 2 oyuncu kadrosunu, maç sonuçlarını, turnuva yolculuğunu ve güncel takım istatistiklerini keşfet." />
     <meta name="robots" content="index, follow" />
     <meta property="og:title" content="ASCEND Esports" />
-    <meta property="og:description" content="ASCEND Esports — built on Replit. Update this description to reflect the app." />
+    <meta property="og:description" content="ASCEND Esports'in Standoff 2 oyuncu kadrosu, maç sonuçları, turnuvaları ve takım istatistikleri." />
     <meta property="og:type" content="website" />
+    <meta property="og:locale" content="tr_TR" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/og-image.svg" />
+    <meta property="og:image:alt" content="ASCEND Esports — Standoff 2" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="ASCEND Esports" />
-    <meta name="twitter:description" content="ASCEND Esports — built on Replit. Update this description to reflect the app." />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="twitter:description" content="ASCEND Esports'in Standoff 2 oyuncu kadrosu, maç sonuçları ve turnuva yolculuğu." />
+    <meta name="twitter:image" content="/og-image.svg" />
+    <link rel="canonical" href="/" />
+    <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+      const canonicalUrl = `${window.location.origin}${window.location.pathname}`;
+      const privateRoute = /^\/(?:admin|sign-in|sign-up)(?:\/|$)/.test(window.location.pathname);
+      document.querySelector('link[rel="canonical"]')?.setAttribute("href", canonicalUrl);
+      document.querySelector('meta[property="og:url"]')?.setAttribute("content", canonicalUrl);
+      document.querySelector('meta[property="og:image"]')?.setAttribute("content", `${window.location.origin}/og-image.svg`);
+      document.querySelector('meta[name="twitter:image"]')?.setAttribute("content", `${window.location.origin}/og-image.svg`);
+      document.querySelector('meta[name="robots"]')?.setAttribute("content", privateRoute ? "noindex, nofollow" : "index, follow");
+    </script>
   </head>
   <body>
     <div id="root"></div>

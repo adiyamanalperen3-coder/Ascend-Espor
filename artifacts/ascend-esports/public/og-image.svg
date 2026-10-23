@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title description">
+  <title id="title">ASCEND Esports</title>
+  <desc id="description">Standoff 2 esports team — We rise. We ascend.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0c2022"/>
+      <stop offset="1" stop-color="#061012"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="78%" cy="30%" r="60%">
+      <stop offset="0" stop-color="#17bbae" stop-opacity=".25"/>
+      <stop offset="1" stop-color="#17bbae" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#background)"/>
+  <rect width="1200" height="630" fill="url(#glow)"/>
+  <path d="M0 0h1200v10H0z" fill="#22e0d0"/>
+  <g transform="translate(92 225)">
+    <path d="M55 0 105 22 96 82 55 109 14 82 5 22Z" fill="#22e0d0"/>
+    <text x="55" y="72" fill="#061012" text-anchor="middle" font-family="Arial,sans-serif" font-size="58" font-weight="900">A</text>
+    <text x="142" y="49" fill="#eefafa" font-family="Arial,sans-serif" font-size="53" font-weight="900" letter-spacing="7">ASCEND</text>
+    <text x="144" y="81" fill="#91aaa9" font-family="Arial,sans-serif" font-size="14" font-weight="700" letter-spacing="8">STANDOFF 2 ESPORTS</text>
+    <text x="0" y="220" fill="#eefafa" font-family="Arial,sans-serif" font-size="84" font-weight="900" letter-spacing="-3">WE RISE.</text>
+    <text x="0" y="312" fill="#22e0d0" font-family="Arial,sans-serif" font-size="84" font-weight="900" letter-spacing="-3">WE ASCEND.</text>
+  </g>
+  <path d="M1050 168 1140 207 1121 317 1050 364 979 317 960 207Z" fill="#22e0d0" fill-opacity=".06" stroke="#22e0d0" stroke-opacity=".28" stroke-width="2"/>
+  <text x="1050" y="298" fill="#22e0d0" fill-opacity=".6" text-anchor="middle" font-family="Arial,sans-serif" font-size="105" font-weight="900">A</text>
+</svg>

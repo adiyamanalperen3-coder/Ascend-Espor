@@ -3,13 +3,17 @@ info:
   # Do not change the title, if the title changes, the import paths will be broken
   title: Api
   version: 0.1.0
-  description: API specification
+  description: Public ASCEND Esports content and owner-only management API
 servers:
   - url: /api
     description: Base API path
 tags:
   - name: health
     description: Health operations
+  - name: team
+    description: Public team content
+  - name: management
+    description: Owner-only team management
 paths:
   /healthz:
     get:
@@ -24,7 +28,283 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/HealthStatus"
+  /team-content:
+    get:
+      operationId: getTeamContent
+      tags: [team]
+      summary: Get public team content
+      responses:
+        "200":
+          description: Team roster, matches, and tournaments
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamContent"
+  /team-summary:
+    get:
+      operationId: getTeamSummary
+      tags: [team]
+      summary: Get public team totals
+      responses:
+        "200":
+          description: Team totals for the public overview
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamSummary"
+  /admin/access:
+    get:
+      operationId: getAdminAccess
+      tags: [management]
+      summary: Check whether the signed-in user is the configured owner
+      responses:
+        "200":
+          description: The authenticated user's management access
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdminAccess"
+        "401":
+          description: Sign-in is required
+  /players:
+    post:
+      operationId: createPlayer
+      tags: [management]
+      summary: Add a player
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlayerInput"
+      responses:
+        "201":
+          description: Player created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+        "400":
+          description: Invalid player data
+        "401":
+          description: Sign-in is required
+        "403":
+          description: Owner access is required
+    get:
+      operationId: listPlayers
+      tags: [team]
+      summary: List public roster
+      responses:
+        "200":
+          description: Players
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Player"
+  /players/{id}:
+    patch:
+      operationId: updatePlayer
+      tags: [management]
+      summary: Update a player
+      parameters:
+        - $ref: "#/components/parameters/EntityId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/PlayerUpdate"
+      responses:
+        "200":
+          description: Player updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Player"
+        "400":
+          description: Invalid player data
+        "401":
+          description: Sign-in is required
+        "403":
+          description: Owner access is required
+        "404":
+          description: Player not found
+    delete:
+      operationId: deletePlayer
+      tags: [management]
+      summary: Delete a player
+      parameters:
+        - $ref: "#/components/parameters/EntityId"
+      responses:
+        "204":
+          description: Player deleted
+        "401":
+          description: Sign-in is required
+        "403":
+          description: Owner access is required
+        "404":
+          description: Player not found
+  /matches:
+    post:
+      operationId: createMatch
+      tags: [management]
+      summary: Add a match
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MatchInput"
+      responses:
+        "201":
+          description: Match created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Match"
+        "400":
+          description: Invalid match data
+        "401":
+          description: Sign-in is required
+        "403":
+          description: Owner access is required
+  /matches/{id}:
+    patch:
+      operationId: updateMatch
+      tags: [management]
+      summary: Update a match
+      parameters:
+        - $ref: "#/components/parameters/EntityId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/MatchUpdate"
+      responses:
+        "200":
+          description: Match updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Match"
+        "400":
+          description: Invalid match data
+        "401":
+          description: Sign-in is required
+        "403":
+          description: Owner access is required
+        "404":
+          description: Match not found
+    delete:
+      operationId: deleteMatch
+      tags: [management]
+      summary: Delete a match
+      parameters:
+        - $ref: "#/components/parameters/EntityId"
+      responses:
+        "204":
+          description: Match deleted
+        "401":
+          description: Sign-in is required
+        "403":
+          description: Owner access is required
+        "404":
+          description: Match not found
+  /tournaments:
+    post:
+      operationId: createTournament
+      tags: [management]
+      summary: Add a tournament
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TournamentInput"
+      responses:
+        "201":
+          description: Tournament created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tournament"
+        "400":
+          description: Invalid tournament data
+        "401":
+          description: Sign-in is required
+        "403":
+          description: Owner access is required
+  /tournaments/{id}:
+    patch:
+      operationId: updateTournament
+      tags: [management]
+      summary: Update a tournament
+      parameters:
+        - $ref: "#/components/parameters/EntityId"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TournamentUpdate"
+      responses:
+        "200":
+          description: Tournament updated
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Tournament"
+        "400":
+          description: Invalid tournament data
+        "401":
+          description: Sign-in is required
+        "403":
+          description: Owner access is required
+        "404":
+          description: Tournament not found
+    delete:
+      operationId: deleteTournament
+      tags: [management]
+      summary: Delete a tournament
+      parameters:
+        - $ref: "#/components/parameters/EntityId"
+      responses:
+        "204":
+          description: Tournament deleted
+        "401":
+          description: Sign-in is required
+        "403":
+          description: Owner access is required
+        "404":
+          description: Tournament not found
+  /admin/reset:
+    post:
+      operationId: resetTeamContent
+      tags: [management]
+      summary: Reset team content to the starter roster
+      responses:
+        "200":
+          description: Team content reset
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TeamContent"
+        "401":
+          description: Sign-in is required
+        "403":
+          description: Owner access is required
 components:
+  parameters:
+    EntityId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+        minimum: 1
   schemas:
     HealthStatus:
       type: object
@@ -33,4 +313,228 @@ components:
           type: string
       required:
         - status
+    Player:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        initials:
+          type: string
+        role:
+          type: string
+        matches:
+          type: integer
+        wins:
+          type: integer
+        note:
+          type: string
+      required: [id, name, initials, role, matches, wins, note]
+    PlayerInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 80
+        initials:
+          type: string
+          minLength: 1
+          maxLength: 4
+        role:
+          type: string
+          minLength: 1
+          maxLength: 80
+        matches:
+          type: integer
+          minimum: 0
+        wins:
+          type: integer
+          minimum: 0
+        note:
+          type: string
+          maxLength: 500
+      required: [name, initials, role, matches, wins, note]
+    PlayerUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 80
+        initials:
+          type: string
+          minLength: 1
+          maxLength: 4
+        role:
+          type: string
+          minLength: 1
+          maxLength: 80
+        matches:
+          type: integer
+          minimum: 0
+        wins:
+          type: integer
+          minimum: 0
+        note:
+          type: string
+          maxLength: 500
+    Match:
+      type: object
+      properties:
+        id:
+          type: integer
+        opponent:
+          type: string
+        date:
+          type: string
+        event:
+          type: string
+        a:
+          type: integer
+        b:
+          type: integer
+        result:
+          type: string
+          enum: [W, L]
+      required: [id, opponent, date, event, a, b, result]
+    MatchInput:
+      type: object
+      properties:
+        opponent:
+          type: string
+          minLength: 1
+          maxLength: 120
+        date:
+          type: string
+          minLength: 1
+          maxLength: 80
+        event:
+          type: string
+          minLength: 1
+          maxLength: 120
+        a:
+          type: integer
+          minimum: 0
+        b:
+          type: integer
+          minimum: 0
+        result:
+          type: string
+          enum: [W, L]
+      required: [opponent, date, event, a, b, result]
+    MatchUpdate:
+      type: object
+      properties:
+        opponent:
+          type: string
+          minLength: 1
+          maxLength: 120
+        date:
+          type: string
+          minLength: 1
+          maxLength: 80
+        event:
+          type: string
+          minLength: 1
+          maxLength: 120
+        a:
+          type: integer
+          minimum: 0
+        b:
+          type: integer
+          minimum: 0
+        result:
+          type: string
+          enum: [W, L]
+    Tournament:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        date:
+          type: string
+        placement:
+          type: string
+        status:
+          type: string
+      required: [id, name, date, placement, status]
+    TournamentInput:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        date:
+          type: string
+          minLength: 1
+          maxLength: 80
+        placement:
+          type: string
+          minLength: 1
+          maxLength: 120
+        status:
+          type: string
+          minLength: 1
+          maxLength: 80
+      required: [name, date, placement, status]
+    TournamentUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+          minLength: 1
+          maxLength: 120
+        date:
+          type: string
+          minLength: 1
+          maxLength: 80
+        placement:
+          type: string
+          minLength: 1
+          maxLength: 120
+        status:
+          type: string
+          minLength: 1
+          maxLength: 80
+    TeamContent:
+      type: object
+      properties:
+        players:
+          type: array
+          items:
+            $ref: "#/components/schemas/Player"
+        matches:
+          type: array
+          items:
+            $ref: "#/components/schemas/Match"
+        tournaments:
+          type: array
+          items:
+            $ref: "#/components/schemas/Tournament"
+      required: [players, matches, tournaments]
+    TeamSummary:
+      type: object
+      properties:
+        totalPlayers:
+          type: integer
+        totalMatches:
+          type: integer
+        totalWins:
+          type: integer
+        totalTournaments:
+          type: integer
+        winRate:
+          type: number
+      required: [totalPlayers, totalMatches, totalWins, totalTournaments, winRate]
+    AdminAccess:
+      type: object
+      properties:
+        isAdmin:
+          type: boolean
+      required: [isAdmin]
 

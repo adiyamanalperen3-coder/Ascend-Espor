@@ -1,0 +1,1 @@
+- [OpenAPI client codegen](openapi-client-codegen.md) — keep Orval’s React Query target and TypeScript iterable libraries aligned with generated API code.
