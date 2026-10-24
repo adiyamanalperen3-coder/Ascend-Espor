@@ -17,7 +17,6 @@
     <meta name="twitter:title" content="ASCEND Esports" />
     <meta name="twitter:description" content="ASCEND Esports'in Standoff 2 oyuncu kadrosu, maç sonuçları ve turnuva yolculuğu." />
     <meta name="twitter:image" content="/og-image.svg" />
-    <link rel="canonical" href="/" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -25,7 +24,10 @@
     <script>
       const canonicalUrl = `${window.location.origin}${window.location.pathname}`;
       const privateRoute = /^\/(?:admin|sign-in|sign-up)(?:\/|$)/.test(window.location.pathname);
-      document.querySelector('link[rel="canonical"]')?.setAttribute("href", canonicalUrl);
+      const canonicalLink = document.createElement("link");
+      canonicalLink.rel = "canonical";
+      canonicalLink.href = canonicalUrl;
+      document.head.append(canonicalLink);
       document.querySelector('meta[property="og:url"]')?.setAttribute("content", canonicalUrl);
       document.querySelector('meta[property="og:image"]')?.setAttribute("content", `${window.location.origin}/og-image.svg`);
       document.querySelector('meta[name="twitter:image"]')?.setAttribute("content", `${window.location.origin}/og-image.svg`);
