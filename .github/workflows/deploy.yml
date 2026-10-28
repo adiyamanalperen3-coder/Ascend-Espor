@@ -28,11 +28,22 @@ jobs:
         with:
           node-version: 20
 
+          - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
       - name: Install dependencies
-        run: npm install
+        run: pnpm install
 
       - name: Build website
-        run: npm run build -- --base=/Ascend-Espor/
+        run: pnpm run build -- --base=/Ascend-Espor/
 
       - name: Upload website
         uses: actions/upload-pages-artifact@v3
